@@ -1,5 +1,6 @@
 module.exports = {
   extends: ["next", "prettier"],
+  plugins: ["prettier"],
   settings: {
     next: {
       rootDir: ["apps/*/", "packages/*/"],
@@ -8,5 +9,6 @@ module.exports = {
   rules: {
     "@next/next/no-html-link-for-pages": "off",
     "react/jsx-key": "off",
+    "prettier/prettier": ["error"],
   },
 };
