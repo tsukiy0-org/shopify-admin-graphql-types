@@ -1,0 +1,28 @@
+{
+  "name": "@tsukiy0/shopify-admin-graphql-types",
+  "version": "0.1.0-alpha.41",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@packages/config": "*",
+    "@packages/tsconfig": "*",
+    "@graphql-codegen/cli": "2.0.1",
+    "@graphql-codegen/typescript": "2.0.0",
+    "graphql": "15.5.1",
+    "graphql-introspection-json-to-sdl": "1.0.3"
+  },
+  "scripts": {
+    "sdl": "graphql-introspection-json-to-sdl graphql.schema.json > schema.graphql",
+    "generate": "node generate.js",
+    "clean": "rimraf dist",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc -p tsconfig.build.json"
+  }
+}

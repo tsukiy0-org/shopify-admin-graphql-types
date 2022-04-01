@@ -1,0 +1,20 @@
+overwrite: true
+generates:
+  ./src/2020-04/index.ts:
+    schema:
+      - configs/2020-04/graphql.schema.json
+    plugins:
+      - typescript
+    config:
+      scalars:
+        Date: string
+        DateTime: string
+        Decimal: string
+        FormattedString: string
+        HTML: string
+        JSON: any
+        Money: string
+        StorefrontID: string
+        URL: string
+        UnsignedInt64: string
+        UtcOffset: string

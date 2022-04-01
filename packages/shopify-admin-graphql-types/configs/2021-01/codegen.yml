@@ -1,0 +1,21 @@
+overwrite: true
+generates:
+  ./src/2021-01/index.ts:
+    schema:
+      - configs/2021-01/graphql.schema.json
+    plugins:
+      - typescript
+    config:
+      scalars:
+        ARN: string
+        Date: string
+        DateTime: string
+        Decimal: string
+        FormattedString: string
+        HTML: string
+        JSON: any
+        Money: string
+        StorefrontID: string
+        URL: string
+        UnsignedInt64: string
+        UtcOffset: string
