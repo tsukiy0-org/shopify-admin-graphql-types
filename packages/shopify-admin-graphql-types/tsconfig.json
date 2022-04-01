@@ -1,3 +1,13 @@
 {
-    "extends": "@packages/tsconfig/base.json"
+    "extends": "@packages/tsconfig/base.json",
+    "compilerOptions": {
+        "target": "ES2015",
+        "module": "commonjs",
+    },
+    "include": [
+        "**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
 }
