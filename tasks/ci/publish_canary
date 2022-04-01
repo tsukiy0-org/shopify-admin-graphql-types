@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -euxo pipefail
+
+echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} >> .npmrc
+
+yarn lerna publish --canary --preid alpha.$(git rev-parse HEAD) --dist-tag next --yes

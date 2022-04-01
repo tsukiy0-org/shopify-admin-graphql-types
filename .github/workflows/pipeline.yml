@@ -1,0 +1,37 @@
+name: pipeline
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: release
+        required: true
+        default: "false"
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: build
+        run: |
+          docker-compose -f tasks/ci/docker-compose.yml build build
+          docker-compose -f tasks/ci/docker-compose.yml run build
+          docker-compose -f tasks/ci/docker-compose.yml down
+      - name: publish_canary
+        if: ${{ github.ref == 'refs/heads/master' }}
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          docker-compose -f tasks/ci/docker-compose.yml build publish_canary
+          docker-compose -f tasks/ci/docker-compose.yml run publish_canary
+          docker-compose -f tasks/ci/docker-compose.yml down
+      - name: publish_release
+        if: ${{ github.event.inputs.release == 'true' }}
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          docker-compose -f tasks/ci/docker-compose.yml build publish_release
+          docker-compose -f tasks/ci/docker-compose.yml run publish_release
+          docker-compose -f tasks/ci/docker-compose.yml down

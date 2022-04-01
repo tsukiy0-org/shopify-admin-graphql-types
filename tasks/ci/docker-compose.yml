@@ -1,0 +1,56 @@
+version: '3'
+services:
+  build:
+    build:
+      context: .
+      dockerfile: build.Dockerfile
+    volumes:
+      - ../../:/app
+    working_dir: /app
+    command: bash ./tasks/ci/build
+  publish_canary:
+    build:
+      context: .
+      dockerfile: publish_canary.Dockerfile
+    volumes:
+      - ../../:/app
+    working_dir: /app
+    environment:
+      NPM_TOKEN: ${NPM_TOKEN}
+    command: bash ./tasks/ci/publish_canary
+  publish_release:
+    build:
+      context: .
+      dockerfile: publish_release.Dockerfile
+    volumes:
+      - ../../:/app
+    working_dir: /app
+    environment:
+      NPM_TOKEN: ${NPM_TOKEN}
+    command: bash ./tasks/ci/publish_release
+  deploy:
+    build:
+      context: .
+      dockerfile: deploy.Dockerfile
+    volumes:
+      - ../../:/app
+      - /var/run/docker.sock:/var/run/docker.sock
+    working_dir: /app
+    environment:
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}
+    command: bash ./tasks/ci/deploy
+  integration:
+    build:
+      context: .
+      dockerfile: integration.Dockerfile
+    volumes:
+      - ../../:/app
+    working_dir: /app
+    environment:
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}
+      AWS_REGION: ${AWS_DEFAULT_REGION}
+    command: bash ./tasks/ci/integration

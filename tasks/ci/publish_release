@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -euxo pipefail
+
+echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} >> .npmrc
+
+yarn lerna publish from-package --dist-tag latest --yes
