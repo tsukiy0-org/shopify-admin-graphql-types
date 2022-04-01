@@ -1,0 +1,14 @@
+{
+  "name": "main",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "main",
+  "workspaceFolder": "/workspace",
+  "settings": {
+    "terminal.integrated.shell.*": "zsh"
+  },
+  "extensions": [
+    "dbaeumer.vscode-eslint",
+    "github.copilot",
+    "esbenp.prettier-vscode"
+  ]
+}
