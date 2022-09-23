@@ -28,6 +28,6 @@
     "generate": "ts-node ./bin/generateSchemas.ts",
     "typecheck": "tsc --noEmit",
     "prebuild": "rm -rf dist",
-    "build": "tsc --rootDir src --outDir dist"
+    "build": "tsc --project tsconfig.build.json"
   }
 }
