@@ -10,104 +10,17 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  /**
-   * An Amazon Web Services Amazon Resource Name (ARN), including the Region and account ID.
-   * For more information, refer to [Amazon Resource Names](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
-   */
   ARN: string;
-  /**
-   * Represents an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)-encoded date string.
-   * For example, September 7, 2019 is represented as `"2019-07-16"`.
-   *
-   */
   Date: string;
-  /**
-   * Represents an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)-encoded date and time string.
-   * For example, 3:50 pm on September 7, 2019 in the time zone of UTC (Coordinated Universal Time) is
-   * represented as `"2019-09-07T15:50:00Z`".
-   *
-   */
   DateTime: string;
-  /**
-   * A signed decimal number, which supports arbitrary precision and is serialized as a string.
-   *
-   * Example values: `"29.99"`, `"29.999"`.
-   *
-   */
   Decimal: string;
-  /**
-   * A string containing a strict subset of HTML code. Non-allowed tags will be stripped out.
-   * Allowed tags:
-   * * `a` (allowed attributes: `href`, `target`)
-   * * `b`
-   * * `br`
-   * * `em`
-   * * `i`
-   * * `strong`
-   * * `u`
-   * Use [HTML](https://shopify.dev/api/admin-graphql/latest/scalars/HTML) instead if you need to
-   * include other HTML tags.
-   *
-   * Example value: `"Your current domain is <strong>johns-apparel.myshopify.com</strong>."`
-   *
-   */
   FormattedString: string;
-  /**
-   * A string containing HTML code. Refer to the [HTML spec](https://html.spec.whatwg.org/#elements-3) for a
-   * complete list of HTML elements.
-   *
-   * Example value: `"<p>Grey cotton knit sweater.</p>"`.
-   *
-   */
   HTML: string;
-  /**
-   * A [JSON](https://www.json.org/json-en.html) object.
-   *
-   * Example value:
-   * `{
-   *   "product": {
-   *     "id": "gid://shopify/Product/1346443542550",
-   *     "title": "White T-shirt",
-   *     "options": [{
-   *       "name": "Size",
-   *       "values": ["M", "L"]
-   *     }]
-   *   }
-   * }`
-   *
-   */
   JSON: any;
-  /** A monetary value string without a currency symbol or code. Example value: `"100.57"`. */
   Money: string;
-  /**
-   * Represents a unique identifier in the Storefront API. A `StorefrontID` value can be used wherever an ID is expected in the Storefront API.
-   *
-   * Example value: `"Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEwMDc5Nzg1MTAw"`.
-   *
-   */
   StorefrontID: string;
-  /**
-   * Represents an [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986) and
-   * [RFC 3987](https://datatracker.ietf.org/doc/html/rfc3987)-compliant URI string.
-   *
-   * For example, `"https://johns-apparel.myshopify.com"` is a valid URL. It includes a scheme (`https`) and a host
-   * (`johns-apparel.myshopify.com`).
-   *
-   */
   URL: string;
-  /**
-   * An unsigned 64-bit integer. Represents whole numeric values between 0 and 2^64 - 1 encoded as a string of base-10 digits.
-   *
-   * Example value: `"50"`.
-   *
-   */
   UnsignedInt64: string;
-  /**
-   * Time between UTC time and a location's observed time, in the format `"+HH:MM"` or `"-HH:MM"`.
-   *
-   * Example value: `"-07:00"`.
-   *
-   */
   UtcOffset: string;
 };
 
@@ -711,7 +624,10 @@ export type AppPurchaseOneTimeEdge = {
  *
  */
 export enum AppPurchaseStatus {
-  /** The app purchase has been approved by the merchant and is ready to be activated by the app. App purchases created through the GraphQL Admin API are activated upon approval. */
+  /**
+   * The app purchase has been approved by the merchant and is ready to be activated by the app. App purchases created through the GraphQL Admin API are activated upon approval.
+   * @deprecated As of API version 2021-01, when a merchant accepts an app purchase, the status immediately changes from `pending` to `active`.
+   */
   Accepted = 'ACCEPTED',
   /** The app purchase was approved by the merchant and has been activated by the app. Active app purchases are charged to the merchant and are paid out to the partner. */
   Active = 'ACTIVE',
@@ -1096,7 +1012,10 @@ export enum AppSubscriptionSortKeys {
 
 /** The status of the app subscription. */
 export enum AppSubscriptionStatus {
-  /** The app subscription has been approved by the merchant and is ready to be activated by the app. */
+  /**
+   * The app subscription has been approved by the merchant and is ready to be activated by the app.
+   * @deprecated As of API version 2021-01, when a merchant approves an app subscription, the status immediately transitions from `pending` to `active`.
+   */
   Accepted = 'ACCEPTED',
   /** The app subscription has been approved by the merchant. Active app subscriptions are billed to the shop. After payment, partners receive payouts. */
   Active = 'ACTIVE',
@@ -3711,7 +3630,10 @@ export enum CurrencyCode {
   Bwp = 'BWP',
   /** Belarusian Ruble (BYN). */
   Byn = 'BYN',
-  /** Belarusian Ruble (BYR). */
+  /**
+   * Belarusian Ruble (BYR).
+   * @deprecated `BYR` is deprecated. Use `BYN` available from version `2021-01` onwards instead.
+   */
   Byr = 'BYR',
   /** Belize Dollar (BZD). */
   Bzd = 'BZD',
@@ -3921,7 +3843,10 @@ export enum CurrencyCode {
   Srd = 'SRD',
   /** South Sudanese Pound (SSP). */
   Ssp = 'SSP',
-  /** Sao Tome And Principe Dobra (STD). */
+  /**
+   * Sao Tome And Principe Dobra (STD).
+   * @deprecated `STD` is deprecated. Use `STN` available from version `2022-07` onwards instead.
+   */
   Std = 'STD',
   /** Sao Tome And Principe Dobra (STN). */
   Stn = 'STN',
@@ -3959,7 +3884,10 @@ export enum CurrencyCode {
   Uzs = 'UZS',
   /** Venezuelan Bolivares (VED). */
   Ved = 'VED',
-  /** Venezuelan Bolivares (VEF). */
+  /**
+   * Venezuelan Bolivares (VEF).
+   * @deprecated `VEF` is deprecated. Use `VES` available from version `2020-10` onwards instead.
+   */
   Vef = 'VEF',
   /** Venezuelan Bolivares (VES). */
   Ves = 'VES',
@@ -5858,7 +5786,10 @@ export type DeliveryLegacyModeBlocked = {
 
 /** Reasons the shop is blocked from converting to full multi-location delivery profiles mode. */
 export enum DeliveryLegacyModeBlockedReason {
-  /** Multi-Location mode is disabled. The shop can't convert to full multi-location delivery profiles mode. */
+  /**
+   * Multi-Location mode is disabled. The shop can't convert to full multi-location delivery profiles mode.
+   * @deprecated All shops are now using multi-location mode.
+   */
   MultiLocationDisabled = 'MULTI_LOCATION_DISABLED',
   /** There are no locations for this store that can fulfill online orders. */
   NoLocationsFulfillingOnlineOrders = 'NO_LOCATIONS_FULFILLING_ONLINE_ORDERS'
@@ -6542,7 +6473,10 @@ export enum DiscountApplicationAllocationMethod {
   Across = 'ACROSS',
   /** The value is applied onto every entitled line. */
   Each = 'EACH',
-  /** The value is specifically applied onto a particular line. */
+  /**
+   * The value is specifically applied onto a particular line.
+   * @deprecated Use ACROSS instead.
+   */
   One = 'ONE'
 }
 
@@ -10888,11 +10822,13 @@ export enum FulfillmentStatus {
   /**
    * The third-party fulfillment service has acknowledged the fulfillment and is processing it.
    *
+   * @deprecated This is a legacy status and is due to be deprecated.
    */
   Open = 'OPEN',
   /**
    * Shopify has created the fulfillment and is waiting for the third-party fulfillment service to transition it to `open` or `success`.
    *
+   * @deprecated This is a legacy status and is due to be deprecated.
    */
   Pending = 'PENDING',
   /** The fulfillment was completed successfully. */
@@ -13677,9 +13613,15 @@ export enum MarketingTactic {
   Affiliate = 'AFFILIATE',
   /** A direct visit to the online store. */
   Direct = 'DIRECT',
-  /** A display ad. */
+  /**
+   * A display ad.
+   * @deprecated `DISPLAY` is deprecated. Use `AD` instead.
+   */
   Display = 'DISPLAY',
-  /** A follow-up email. */
+  /**
+   * A follow-up email.
+   * @deprecated 'FOLLOW_UP' is deprecated. Use 'TRANSACTIONAL' instead.
+   */
   FollowUp = 'FOLLOW_UP',
   /** A link. */
   Link = 'LINK',
@@ -13693,11 +13635,17 @@ export enum MarketingTactic {
   Notification = 'NOTIFICATION',
   /** A blog post. */
   Post = 'POST',
-  /** A promotional receipt. */
+  /**
+   * A promotional receipt.
+   * @deprecated 'RECEIPT' is deprecated. Use 'TRANSACTIONAL' instead.
+   */
   Receipt = 'RECEIPT',
   /** A retargeting ad. */
   Retargeting = 'RETARGETING',
-  /** Paid search. */
+  /**
+   * Paid search.
+   * @deprecated `SEARCH` is deprecated. Use `AD` instead.
+   */
   Search = 'SEARCH',
   /** Search engine optimization. */
   Seo = 'SEO',
@@ -20127,7 +20075,10 @@ export enum PriceListUserErrorCode {
   ContextRuleCountryTaken = 'CONTEXT_RULE_COUNTRY_TAKEN',
   /** Only one context rule option may be specified. */
   ContextRuleLimitOneOption = 'CONTEXT_RULE_LIMIT_ONE_OPTION',
-  /** Cannot save the price list with context rule because the limit of context rules per shop was reached. */
+  /**
+   * Cannot save the price list with context rule because the limit of context rules per shop was reached.
+   * @deprecated The limit is removed.
+   */
   ContextRuleLimitReached = 'CONTEXT_RULE_LIMIT_REACHED',
   /** The specified market wasn't found. */
   ContextRuleMarketNotFound = 'CONTEXT_RULE_MARKET_NOT_FOUND',
@@ -25041,6 +24992,7 @@ export enum ResourceAlertSeverity {
   Critical = 'CRITICAL',
   /** Indicates a neutral alert. For example, an accepted dispute. */
   Default = 'DEFAULT',
+  /** @deprecated `ERROR` severity is being deprecated in favour of `WARNING` or `CRITICAL` instead. */
   Error = 'ERROR',
   /** Indicates an informative alert. For example, an escalated dispute. */
   Info = 'INFO',
@@ -29340,7 +29292,10 @@ export enum StaffMemberPermission {
   DraftOrders = 'DRAFT_ORDERS',
   /** The staff member can update orders. */
   EditOrders = 'EDIT_ORDERS',
-  /** The staff has the same permissions as the [store owner](https://shopify.dev/en/manual/your-account/staff-accounts/staff-permissions#store-owner-permissions) with some exceptions, such as modifying the account billing or deleting staff accounts. */
+  /**
+   * The staff has the same permissions as the [store owner](https://shopify.dev/en/manual/your-account/staff-accounts/staff-permissions#store-owner-permissions) with some exceptions, such as modifying the account billing or deleting staff accounts.
+   * @deprecated Use the list of the staff member's explicit permissions returned in the `StaffMember.permissions.userPermissions` field instead of `full` permission.
+   */
   Full = 'FULL',
   /** The staff member can view, create, issue, and export gift cards to a CSV file. */
   GiftCards = 'GIFT_CARDS',
@@ -29371,7 +29326,10 @@ export enum StaffMemberPermission {
   Reports = 'REPORTS',
   /** The staff member can view, update, and publish themes. */
   Themes = 'THEMES',
-  /** The staff member can view and create translations. */
+  /**
+   * The staff member can view and create translations.
+   * @deprecated Unused.
+   */
   Translations = 'TRANSLATIONS'
 }
 
@@ -31505,7 +31463,10 @@ export enum TranslatableResourceType {
   Shop = 'SHOP',
   /** A shop policy. Translatable fields: `body`. */
   ShopPolicy = 'SHOP_POLICY',
-  /** An SMS template. Translatable fields: `body`. */
+  /**
+   * An SMS template. Translatable fields: `body`.
+   * @deprecated `SMS_TEMPLATE` is deprecated, it is no longer a translatable resource type.
+   */
   SmsTemplate = 'SMS_TEMPLATE'
 }
 
@@ -31835,7 +31796,10 @@ export type UrlRedirectImportCreatePayload = {
 export enum UrlRedirectImportErrorCode {
   /** The import has already completed. */
   AlreadyImported = 'ALREADY_IMPORTED',
-  /** CSV file does not exist at given URL. */
+  /**
+   * CSV file does not exist at given URL.
+   * @deprecated This error code is never returned
+   */
   FileDoesNotExist = 'FILE_DOES_NOT_EXIST',
   /** The import is already in progress. */
   InProgress = 'IN_PROGRESS',
