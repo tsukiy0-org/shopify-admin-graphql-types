@@ -15,6 +15,7 @@
     "@graphql-codegen/typescript": "2.4.8",
     "@packages/tsconfig": "*",
     "@types/node-fetch": "^2",
+    "eslint-config-custom": "*",
     "graphql": "16.3.0",
     "graphql-introspection-json-to-sdl": "1.0.3",
     "node-fetch": "^2",
@@ -24,7 +25,7 @@
   "scripts": {
     "sdl": "graphql-introspection-json-to-sdl graphql.schema.json > schema.graphql",
     "get-schemas": "ts-node ./bin/getSchemas.ts",
-    "generate": "node generate.js",
+    "generate": "ts-node ./bin/generateSchemas.ts",
     "typecheck": "tsc --noEmit",
     "prebuild": "rm -rf dist",
     "build": "tsc --rootDir src --outDir dist"

@@ -1,8 +1,8 @@
 overwrite: true
 generates:
-  ./src/2022-01/index.ts:
+  ./src/2022-07/index.ts:
     schema:
-      - configs/2022-01/graphql.schema.json
+      - configs/2022-07/graphql.schema.json
     plugins:
       - typescript
     config:
